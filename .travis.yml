@@ -1,8 +1,13 @@
-
 language: node_js
 node_js:
   - "8"
 install:
     - npm install
-script:
-    - npm run start
+deploy:
+  - provider: codedeploy
+    revision_type: github
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    application: "ci-express"
+    deployment_group: "ci-express-group"
+    region: "us-east-1"
